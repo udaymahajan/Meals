@@ -3,41 +3,73 @@ import 'category_list.dart';
 
 class MealDetails extends StatelessWidget {
 
-  final String title;
   final String id;
 
-  MealDetails(this.id, this.title);
+  MealDetails(this.id);
 
-  Widget buildtext(text) {
+  Widget buildtext(String text) {
     return Container(
-      child: Text(text),
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Text(text, style: TextStyle(fontSize: 22),),
     );
   }
 
-  Widget buildlist(context, selectedMeal) {
+  Widget buildContainer(Widget child) {
     return Container(
-      child: ListView.builder(
-        itemBuilder: (context, index) => Card(child: Text(selectedMeal.ingredients[index]),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(10),
         ),
-        itemCount: selectedMeal.length
-      ),
+      padding: EdgeInsets.all(10),
+      height: 150,
+      width: 300,
+      child: child
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
     final selectedMeal = MealsList.firstWhere((meal) => meal.id == id);
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Column(children: [
-        Container(
-          height: 300,
-          width: double.infinity,
-          child: Image.network(selectedMeal.imageUrl),
+      appBar: AppBar(title: Text(id)),
+      body: SingleChildScrollView(
+              child: Column(children: [
+          Container(
+            height: 300,
+            width: double.infinity,
+            child: Image.network(
+              selectedMeal.imageUrl,
+              fit: BoxFit.cover,
+              ),
+            ),
+          Divider(),
+          buildtext('Ingredients'),
+          Divider(),
+          buildContainer(ListView.builder(
+              itemBuilder: (ctx, index) => Card(
+                color: Colors.amber,
+                child: Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Text(selectedMeal.ingredients[index])),
+                ),
+              itemCount: selectedMeal.ingredients.length
+            ),
           ),
-        buildtext('Ingredients'),
-        buildlist(context, selectedMeal)
-      ],)
+          Divider(),
+          buildtext('Steps'),
+          Divider(),
+          buildContainer(ListView.builder(
+              itemBuilder: (ctx, index) => ListTile(
+                leading: CircleAvatar(child: Text('# ${index+1}'),),
+                title: Text(selectedMeal.steps[index]),
+                ),
+              itemCount: selectedMeal.steps.length,
+              ),
+            )
+        ],),
+      )
     );
   }
 }
