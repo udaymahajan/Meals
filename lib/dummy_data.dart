@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './models/category_data.dart';
-import './models/meals_data.dart';
+import 'models/category_model.dart';
+import 'models/meals_model.dart';
 
 const CategoryList = const [
 
