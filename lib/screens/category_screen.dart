@@ -1,43 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/screens/meals_screen.dart';
+import '../dummy_data.dart';
+import '../widgets/categories_item.dart';
 
-class CategoryItems extends StatelessWidget {
-  final String id;
-  final String title;
-  final Color color;
 
-  CategoryItems(this. id, this.title, this.color);
+class CategoriesScreen extends StatelessWidget {
 
-  void navigator(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => Meals(id, title),),);
-  }
-
+  @override
   Widget build(BuildContext context) {
-    return InkWell(
-          onTap: () => navigator(context),
-          splashColor: Colors.pink,
-          borderRadius: BorderRadius.circular(15),
-          child: Container(
-          padding: EdgeInsets.all(20),
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
-          ),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                color.withOpacity(0.6),
-                color,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          )),
-    );
+    return GridView(
+        padding: EdgeInsets.all(10),
+        children: CategoryList.map((list) => CategoriesItem(list.id, list.title, list.color)).toList(),
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          childAspectRatio: 1,
+          crossAxisSpacing: 15,
+          mainAxisSpacing: 15,
+          maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
+        ),
+      );
   }
 }
