@@ -34,7 +34,7 @@ class MealDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final selectedMeal = MealsList.firstWhere((meal) => meal.id == id);
     return Scaffold(
-      appBar: AppBar(title: Text(id)),
+      appBar: AppBar(title: Text(selectedMeal.title)),
       body: SingleChildScrollView(
               child: Column(children: [
           Container(
