@@ -22,8 +22,9 @@ class MealDetails extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         ),
       padding: EdgeInsets.all(10),
-      height: 150,
-      width: 300,
+      margin: EdgeInsets.all(10),
+      height: 190,
+      width: 350,
       child: child
     );
   }
@@ -61,10 +62,13 @@ class MealDetails extends StatelessWidget {
           buildtext('Steps'),
           Divider(),
           buildContainer(ListView.builder(
-              itemBuilder: (ctx, index) => ListTile(
-                leading: CircleAvatar(child: Text('# ${index+1}'),),
-                title: Text(selectedMeal.steps[index]),
-                ),
+              itemBuilder: (ctx, index) => Column(
+                  children: [ListTile(
+                  leading: CircleAvatar(child: Text('# ${index+1}'),),
+                  title: Text(selectedMeal.steps[index]),
+                  ),
+                  Divider(),
+                  ]),
               itemCount: selectedMeal.steps.length,
               ),
             )
