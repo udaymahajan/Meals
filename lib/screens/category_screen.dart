@@ -16,6 +16,6 @@ class CategoriesScreen extends StatelessWidget {
           mainAxisSpacing: 15,
           maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
         ),
-      );
+    );
   }
 }
