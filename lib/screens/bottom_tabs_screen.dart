@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './category_screen.dart';
 import './favorites_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class BottomTabsScreen extends StatefulWidget {
 
@@ -12,24 +13,25 @@ class BottomTabsScreenState extends State<BottomTabsScreen> {
 
   int selectedPage = 0;
 
-  Widget build (BuildContext context) {
-
-
-    void selectPage(int index) {     
+  void selectPage(int index) {     
 
       setState(() => selectedPage = index);
 
     }
 
-    final List<Map<String, Object>> page = [
+  final List<Map<String, Object>> page = [
     
     {'page': CategoriesScreen(), 'title': 'Categories'},
     {'page': FavoritesScreen(), 'title': 'Favorites'},
     
     ];
 
+
+  Widget build (BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: Text(page[selectedPage]['title'])),
+      drawer: MainDrawer(),
       body: page[selectedPage]['page'],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
