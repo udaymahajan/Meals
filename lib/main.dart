@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     'gluten': false,
     'lactose': false,
     'vegan': false,
-    'vegetarian': false
+    'vegetarian': false,
   };
 
   List<Meal> filteredMeals = MealsList;
