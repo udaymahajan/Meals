@@ -9,7 +9,10 @@ class CategoriesItem extends StatelessWidget {
   CategoriesItem(this. id, this.title, this.color);
 
   void navigator(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => Meals(id, title),),);
+    Navigator.of(context).pushNamed(MealsScreen.routeName, arguments: {
+      'id': id,
+      'title': title,
+    });
   }
 
   Widget build(BuildContext context) {

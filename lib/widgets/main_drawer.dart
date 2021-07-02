@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/screens/bottom_tabs_screen.dart';
+import '../screens/filters_screen.dart';
 
 class MainDrawer extends StatelessWidget{
 
-  Widget buildListTile(IconData icon, String title) {
+  Widget buildListTile(IconData icon, String title, Function tabHandler) {
     return ListTile(
       leading: Icon(icon),
       title: Text(title, style: TextStyle(fontSize: 16)),
+      onTap: tabHandler,
     );
   }
 
@@ -22,9 +25,9 @@ class MainDrawer extends StatelessWidget{
             color: Theme.of(context).primaryColor,
             child: Text('ZOMATO', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 28, color: Colors.white))
           ),
-          buildListTile(Icons.restaurant, 'Meals'),
-          // SizedBox(height: 1),
-          buildListTile(Icons.settings, 'Filters'),
+          SizedBox(height: 15),
+          buildListTile(Icons.restaurant, 'Meals', () => Navigator.of(context).pushReplacementNamed('/')),
+          buildListTile(Icons.settings, 'Filters', () => Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName)),
         ]
       ),
     );
