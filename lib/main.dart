@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/dummy_data.dart';
-import 'package:meals_app/screens/category_screen.dart';
-import 'package:meals_app/widgets/categories_item.dart';
 import './screens/meals_screen.dart';
 import 'package:meals_app/screens/filters_screen.dart';
 import './models/meals_model.dart';
@@ -65,7 +63,7 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/': (ctx) => BottomTabsScreen(),
           MealsScreen.routeName: (ctx) => MealsScreen(filteredMeals),
-          FiltersScreen.routeName: (ctx) => FiltersScreen(savedFilters),
+          FiltersScreen.routeName: (ctx) => FiltersScreen(savedFilters, filters),
         },
         );
   }

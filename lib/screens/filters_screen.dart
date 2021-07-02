@@ -7,14 +7,16 @@ class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
   
   final Function savedFilters;
+  final Map<String, bool> filters;
 
-  FiltersScreen(this.savedFilters);
+  FiltersScreen(this.savedFilters, this.filters);
 
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
+
 
   var glutenFree = false;
   var lactoseFree = false;
