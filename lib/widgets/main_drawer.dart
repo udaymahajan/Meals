@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/screens/bottom_tabs_screen.dart';
 import '../screens/filters_screen.dart';
 
 class MainDrawer extends StatelessWidget{

@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import './category_screen.dart';
 import './favorites_screen.dart';
 import '../widgets/main_drawer.dart';
+import '../models/meals_model.dart';
 
 class BottomTabsScreen extends StatefulWidget {
+
+  final List<Meal> favoriteMeals;
+
+  BottomTabsScreen(this.favoriteMeals);
 
   State<StatefulWidget> createState() => BottomTabsScreenState();
 
@@ -19,12 +24,17 @@ class BottomTabsScreenState extends State<BottomTabsScreen> {
 
     }
 
-  final List<Map<String, Object>> page = [
-    
+  List<Map<String, Object>> page;
+
+  void initState() {
+    page = [
+
     {'page': CategoriesScreen(), 'title': 'Categories'},
-    {'page': FavoritesScreen(), 'title': 'Favorites'},
+    {'page': FavoritesScreen(widget.favoriteMeals), 'title': 'Favorites'},
     
     ];
+    super.initState();
+  }  
 
 
   Widget build (BuildContext context) {

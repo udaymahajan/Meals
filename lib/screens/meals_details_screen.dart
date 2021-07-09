@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import '../dummy_data.dart';
 
-class MealDetails extends StatelessWidget {
+class MealDetailsScreen extends StatelessWidget {
 
-  final String id;
+  static const routeName = '/mealDetailsScreen';
 
-  MealDetails(this.id);
+  final Function addFavorite;
+  final Function isFavorite;
+
+  MealDetailsScreen(this.addFavorite, this.isFavorite);
 
   Widget buildtext(String text) {
     return Container(
@@ -32,6 +35,7 @@ class MealDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final id = ModalRoute.of(context).settings.arguments as String;
     final selectedMeal = MealsList.firstWhere((meal) => meal.id == id);
     return Scaffold(
       appBar: AppBar(title: Text(selectedMeal.title)),
@@ -73,7 +77,13 @@ class MealDetails extends StatelessWidget {
               ),
             )
         ],),
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          isFavorite(id) ? Icons.star : Icons.star_border
+        ),
+        onPressed: () => addFavorite(id),
+        ),
     );
   }
 }

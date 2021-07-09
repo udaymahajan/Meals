@@ -40,7 +40,7 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => MealDetails(id)));
+    Navigator.of(context).pushNamed(MealDetailsScreen.routeName, arguments: id);
   }
 
   Widget build (BuildContext context) {
